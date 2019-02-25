@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="stok_yonetim_sistemiModelStoreContainer" CdmEntityContainer="stok_yonetim_sistemiEntities3">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAtik">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblAtik">
+        <MappingFragment StoreEntitySet="tblAtik">
+          <ScalarProperty Name="atikDepoID" ColumnName="atikDepoID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="atikAtmaZamanı" ColumnName="atikAtmaZamanı" />
+          <ScalarProperty Name="adet" ColumnName="adet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCalisanlar">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblCalisanlar">
+        <MappingFragment StoreEntitySet="tblCalisanlar">
+          <ScalarProperty Name="calisanID" ColumnName="calisanID" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+          <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+          <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+          <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+          <ScalarProperty Name="maas" ColumnName="maas" />
+          <ScalarProperty Name="depatmanID" ColumnName="depatmanID" />
+          <ScalarProperty Name="aktiflikDurumu" ColumnName="aktiflikDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDepartman">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblDepartman">
+        <MappingFragment StoreEntitySet="tblDepartman">
+          <ScalarProperty Name="departmanID" ColumnName="departmanID" />
+          <ScalarProperty Name="departmanAdi" ColumnName="departmanAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDepo">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblDepo">
+        <MappingFragment StoreEntitySet="tblDepo">
+          <ScalarProperty Name="depoID" ColumnName="depoID" />
+          <ScalarProperty Name="urunSirasi" ColumnName="urunSirasi" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="satinAlmaTarihi" ColumnName="satinAlmaTarihi" />
+          <ScalarProperty Name="adet" ColumnName="adet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFirma">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblFirma">
+        <MappingFragment StoreEntitySet="tblFirma">
+          <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+          <ScalarProperty Name="firmaAdi" ColumnName="firmaAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRol">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblRol">
+        <MappingFragment StoreEntitySet="tblRol">
+          <ScalarProperty Name="rolID" ColumnName="rolID" />
+          <ScalarProperty Name="rolAdi" ColumnName="rolAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUrun">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblUrun">
+        <MappingFragment StoreEntitySet="tblUrun">
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="urunTipi" ColumnName="urunTipi" />
+          <ScalarProperty Name="marka" ColumnName="marka" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblYetkililer">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblYetkililer">
+        <MappingFragment StoreEntitySet="tblYetkililer">
+          <ScalarProperty Name="yetkiliID" ColumnName="yetkiliID" />
+          <ScalarProperty Name="CalisanID" ColumnName="CalisanID" />
+          <ScalarProperty Name="rolID" ColumnName="rolID" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblZimmet">
+      <EntityTypeMapping TypeName="stok_yonetim_sistemiModel.tblZimmet">
+        <MappingFragment StoreEntitySet="tblZimmet">
+          <ScalarProperty Name="zimmetID" ColumnName="zimmetID" />
+          <ScalarProperty Name="yetkiliID" ColumnName="yetkiliID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="calisanID" ColumnName="calisanID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="stok_yonetim_sistemiModel.Store.yetkiliIsim" FunctionImportName="yetkiliIsim">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="stok_yonetim_sistemiModel.yetkiliIsim_Result">
+          <ScalarProperty Name="yetkiliID" ColumnName="yetkiliID" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+          <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="stok_yonetim_sistemiModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="stok_yonetim_sistemiModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="stok_yonetim_sistemiModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="stok_yonetim_sistemiModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="stok_yonetim_sistemiModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="stok_yonetim_sistemiModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="stok_yonetim_sistemiModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Raporlama" FunctionName="stok_yonetim_sistemiModel.Store.sp_Raporlama">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="stok_yonetim_sistemiModel.sp_Raporlama_Result">
+          <ScalarProperty Name="calisanID" ColumnName="calisanID" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+          <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+          <ScalarProperty Name="yetkiliID" ColumnName="yetkiliID" />
+          <ScalarProperty Name="rolID" ColumnName="rolID" />
+          <ScalarProperty Name="urunAdi" ColumnName="urunAdi" />
+          <ScalarProperty Name="urunTipi" ColumnName="urunTipi" />
+          <ScalarProperty Name="marka" ColumnName="marka" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="stok_yonetim_sistemiModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="stok_yonetim_sistemiModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

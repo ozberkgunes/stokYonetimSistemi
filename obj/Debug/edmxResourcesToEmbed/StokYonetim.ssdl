@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stok_yonetim_sistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblAtik">
+    <Key>
+      <PropertyRef Name="atikDepoID" />
+    </Key>
+    <Property Name="atikDepoID" Type="int" Nullable="false" />
+    <Property Name="urunID" Type="int" />
+    <Property Name="atikAtmaZamanı" Type="datetime" />
+    <Property Name="adet" Type="int" />
+  </EntityType>
+  <EntityType Name="tblCalisanlar">
+    <Key>
+      <PropertyRef Name="calisanID" />
+    </Key>
+    <Property Name="calisanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adi" Type="nvarchar" MaxLength="20" />
+    <Property Name="soyadi" Type="nvarchar" MaxLength="20" />
+    <Property Name="dogumTarihi" Type="datetime" />
+    <Property Name="cinsiyet" Type="nvarchar" MaxLength="20" />
+    <Property Name="maas" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="depatmanID" Type="int" Nullable="false" />
+    <Property Name="zimmetID" Type="int" />
+    <Property Name="rolID" Type="int" Nullable="false" />
+    <Property Name="aktiflikDurumu" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDepartman">
+    <Key>
+      <PropertyRef Name="departmanID" />
+    </Key>
+    <Property Name="departmanID" Type="int" Nullable="false" />
+    <Property Name="departmanAdi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblDepo">
+    <Key>
+      <PropertyRef Name="depoID" />
+    </Key>
+    <Property Name="depoID" Type="int" Nullable="false" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="satinAlmaTarihi" Type="datetime" />
+    <Property Name="adet" Type="int" />
+  </EntityType>
+  <EntityType Name="tblFirma">
+    <Key>
+      <PropertyRef Name="firmaID" />
+    </Key>
+    <Property Name="firmaID" Type="int" Nullable="false" />
+    <Property Name="firmaAdi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblRol">
+    <Key>
+      <PropertyRef Name="rolID" />
+    </Key>
+    <Property Name="rolID" Type="int" Nullable="false" />
+    <Property Name="rolAdi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblUrun">
+    <Key>
+      <PropertyRef Name="urunID" />
+    </Key>
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="firmaID" Type="int" Nullable="false" />
+    <Property Name="urunAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="urunTipi" Type="nvarchar" MaxLength="20" />
+    <Property Name="marka" Type="nvarchar" MaxLength="20" />
+    <Property Name="fiyat" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tblYetkililer">
+    <Key>
+      <PropertyRef Name="yetkiliID" />
+    </Key>
+    <Property Name="yetkiliID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CalisanID" Type="int" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblZimmet">
+    <Key>
+      <PropertyRef Name="zimmetID" />
+    </Key>
+    <Property Name="zimmetID" Type="int" Nullable="false" />
+    <Property Name="yetkiliID" Type="int" Nullable="false" />
+    <Property Name="urunID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblAtik_tblUrun">
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+    <End Role="tblAtik" Type="Self.tblAtik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrun">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="tblAtik">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCalisanlar_tblDepartman">
+    <End Role="tblDepartman" Type="Self.tblDepartman" Multiplicity="1" />
+    <End Role="tblCalisanlar" Type="Self.tblCalisanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDepartman">
+        <PropertyRef Name="departmanID" />
+      </Principal>
+      <Dependent Role="tblCalisanlar">
+        <PropertyRef Name="depatmanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCalisanlar_tblRol">
+    <End Role="tblRol" Type="Self.tblRol" Multiplicity="1" />
+    <End Role="tblCalisanlar" Type="Self.tblCalisanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRol">
+        <PropertyRef Name="rolID" />
+      </Principal>
+      <Dependent Role="tblCalisanlar">
+        <PropertyRef Name="rolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCalisanlar_tblZimmet">
+    <End Role="tblZimmet" Type="Self.tblZimmet" Multiplicity="0..1" />
+    <End Role="tblCalisanlar" Type="Self.tblCalisanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblZimmet">
+        <PropertyRef Name="zimmetID" />
+      </Principal>
+      <Dependent Role="tblCalisanlar">
+        <PropertyRef Name="zimmetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDepo_tblUrun">
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+    <End Role="tblDepo" Type="Self.tblDepo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrun">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="tblDepo">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUrun_tblFirma">
+    <End Role="tblFirma" Type="Self.tblFirma" Multiplicity="1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFirma">
+        <PropertyRef Name="firmaID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="firmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblYetkililer_tblCalisanlar">
+    <End Role="tblCalisanlar" Type="Self.tblCalisanlar" Multiplicity="1" />
+    <End Role="tblYetkililer" Type="Self.tblYetkililer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCalisanlar">
+        <PropertyRef Name="calisanID" />
+      </Principal>
+      <Dependent Role="tblYetkililer">
+        <PropertyRef Name="CalisanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblZimmet_tblUrun">
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+    <End Role="tblZimmet" Type="Self.tblZimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrun">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="tblZimmet">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblZimmet_tblYetkililer">
+    <End Role="tblYetkililer" Type="Self.tblYetkililer" Multiplicity="1" />
+    <End Role="tblZimmet" Type="Self.tblZimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblYetkililer">
+        <PropertyRef Name="yetkiliID" />
+      </Principal>
+      <Dependent Role="tblZimmet">
+        <PropertyRef Name="yetkiliID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="stok_yonetim_sistemiModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAtik" EntityType="Self.tblAtik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCalisanlar" EntityType="Self.tblCalisanlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDepartman" EntityType="Self.tblDepartman" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDepo" EntityType="Self.tblDepo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFirma" EntityType="Self.tblFirma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUrun" EntityType="Self.tblUrun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblYetkililer" EntityType="Self.tblYetkililer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblZimmet" EntityType="Self.tblZimmet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblAtik_tblUrun" Association="Self.FK_tblAtik_tblUrun">
+      <End Role="tblUrun" EntitySet="tblUrun" />
+      <End Role="tblAtik" EntitySet="tblAtik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCalisanlar_tblDepartman" Association="Self.FK_tblCalisanlar_tblDepartman">
+      <End Role="tblDepartman" EntitySet="tblDepartman" />
+      <End Role="tblCalisanlar" EntitySet="tblCalisanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCalisanlar_tblRol" Association="Self.FK_tblCalisanlar_tblRol">
+      <End Role="tblRol" EntitySet="tblRol" />
+      <End Role="tblCalisanlar" EntitySet="tblCalisanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCalisanlar_tblZimmet" Association="Self.FK_tblCalisanlar_tblZimmet">
+      <End Role="tblZimmet" EntitySet="tblZimmet" />
+      <End Role="tblCalisanlar" EntitySet="tblCalisanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDepo_tblUrun" Association="Self.FK_tblDepo_tblUrun">
+      <End Role="tblUrun" EntitySet="tblUrun" />
+      <End Role="tblDepo" EntitySet="tblDepo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUrun_tblFirma" Association="Self.FK_tblUrun_tblFirma">
+      <End Role="tblFirma" EntitySet="tblFirma" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblYetkililer_tblCalisanlar" Association="Self.FK_tblYetkililer_tblCalisanlar">
+      <End Role="tblCalisanlar" EntitySet="tblCalisanlar" />
+      <End Role="tblYetkililer" EntitySet="tblYetkililer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblZimmet_tblUrun" Association="Self.FK_tblZimmet_tblUrun">
+      <End Role="tblUrun" EntitySet="tblUrun" />
+      <End Role="tblZimmet" EntitySet="tblZimmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblZimmet_tblYetkililer" Association="Self.FK_tblZimmet_tblYetkililer">
+      <End Role="tblYetkililer" EntitySet="tblYetkililer" />
+      <End Role="tblZimmet" EntitySet="tblZimmet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
